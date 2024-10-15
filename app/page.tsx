@@ -101,7 +101,7 @@ function HomePage() {
             return (
               <li
                 key={product.id}
-                className='flex flex-col p-4 rounded-xl items-center gap-2'
+                className='flex justify-center flex-col p-4 rounded-xl items-center gap-2'
               >
                 <Image
                   src={product.imageUrl}
@@ -110,8 +110,8 @@ function HomePage() {
                   height={75}
                   className='h-45 bg-cover'
                 />
-                <p>{product.name}</p>
-                <p>{product.price}$</p>
+                <p className='text-center'>{product.name}</p>
+                <p className='text-center'>{product.price}$</p>
               </li>
             );
           })}
