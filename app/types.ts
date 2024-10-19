@@ -11,3 +11,9 @@ export type Product = {
   color: string;
   stock: number;
 };
+
+export type NavLink = {
+  id: number;
+  page: string;
+  url: string;
+};
