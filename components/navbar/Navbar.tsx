@@ -7,7 +7,7 @@ import Logo from './Logo';
 function Navbar() {
   return (
     <nav className='border-b'>
-      <Container className='flex flex-row justify-between items-center  gap-4 flex-wrap'>
+      <Container className='flex flex-row justify-between items-center gap-4'>
         <Logo />
         <LinksDropdown />
         <CartButton />
