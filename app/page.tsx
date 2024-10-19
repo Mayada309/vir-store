@@ -1,5 +1,5 @@
 'use client';
-
+import logo from '../images/kiiva.png';
 import Image from 'next/image';
 import image1 from '../images/landing-1.jpg';
 import image2 from '../images/landing-2.jpg';
@@ -12,8 +12,9 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { Product } from './types';
+import Link from 'next/link';
 
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: 1,
     name: "Men's Classic White T-Shirt",
@@ -61,9 +62,16 @@ function HomePage() {
   return (
     <>
       <div className='relative mb-4 h-full md:flex md:flex-col md:items-center md:justify-center'>
-        <div className='absolute bg-slate-500/35 h-full w-full z-10 flex justify-center items-center md:h-24'>
-          <p className='uppercase font-semibold opacity-100 p-4 text-2xl text-center text-white'>
-            Welcome to Kiiva
+        <div className='absolute bg-slate-500/35 h-full w-full p-4 z-10 flex justify-center items-center md:h-[35%]'>
+          <p className='uppercase font-semibold opacity-100 p-4 text-2xl text-center text-white '>
+            Welcome to
+            <Image
+              height={100}
+              width={100}
+              className='ml-2 w-16 h-16 inline'
+              src={logo}
+              alt='kiiva'
+            />
             <br />
             your one-stop shop for stylish high-quality t-shirts!
           </p>
@@ -81,9 +89,9 @@ function HomePage() {
                     <Image
                       src={image}
                       alt='landing-image '
-                      width={250}
-                      height={150}
-                      className=''
+                      width={560}
+                      height={730}
+                      className='h-80 w-full object-cover'
                     />
                   </div>
                 </CarouselItem>
@@ -101,17 +109,22 @@ function HomePage() {
             return (
               <li
                 key={product.id}
-                className='flex justify-center flex-col p-4 rounded-xl items-center gap-2'
+                className='flex justify-center text-lg flex-col p-4 rounded-xl items-center gap-2'
               >
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  width={200}
-                  height={75}
-                  className='h-45 bg-cover'
-                />
-                <p className='text-center'>{product.name}</p>
-                <p className='text-center'>{product.price}$</p>
+                <Link href={{ pathname: '/single-product', query: { id: product.id } }}>
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.name}
+                    width={300}
+                    height={300}
+                    className='h-80 w-full object-cover bg-cover'
+                  />
+                  <p className='text-center'>{product.name}</p>
+                  <p className='text-center'>{product.price}$</p>
+                  <button className='text-white bg-slate-500 py-2 px-4 rounded capitalize'>
+                    add to cart
+                  </button>
+                </Link>
               </li>
             );
           })}
