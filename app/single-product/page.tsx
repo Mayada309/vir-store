@@ -5,6 +5,7 @@ import { products } from '@/data';
 import Image from 'next/image';
 import { Product } from '../types';
 import Container from '@/components/global/Container';
+import { Suspense } from 'react';
 
 function SingleProduct() {
   const searchParams = useSearchParams();
@@ -49,4 +50,10 @@ function SingleProduct() {
   );
 }
 
-export default SingleProduct;
+export default function SingleProductPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SingleProduct />
+    </Suspense>
+  );
+}
