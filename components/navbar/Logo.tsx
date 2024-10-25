@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import logo from '../../images/kiiva.png';
 import Image from 'next/image';
 
