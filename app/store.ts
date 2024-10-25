@@ -66,10 +66,10 @@ const cartSlice = createSlice({
     },
     updateCart: (
       state,
-      action: PayloadAction<{ product: Product; newAmount: number }>
+      action: PayloadAction<{ product: Product; newAmount: string }>
     ) => {
       const { product, newAmount } = action.payload;
-      const item = { ...product, amount: newAmount };
+      const item = { ...product, amount: Number(newAmount) };
       state.cartItems = state.cartItems.filter((i) => i.id !== product.id);
       state.cartItems.push(item);
       cartSlice.caseReducers.getTotalCheck(state);
