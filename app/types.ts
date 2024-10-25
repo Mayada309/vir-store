@@ -10,6 +10,8 @@ export type Product = {
   sizeOptions: string[];
   color: string;
   stock: number;
+  amount: number;
+  selectedSize: string;
 };
 
 export type NavLink = {
