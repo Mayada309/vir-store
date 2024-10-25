@@ -24,7 +24,7 @@ function LinksDropdown() {
             <Link
               href={link.url}
               key={link.id}
-              className='capitalize text-slate-500 hover:text-orange-400 transition-colors'
+              className='capitalize font-semibold text-slate-500 hover:text-orange-400 transition-colors'
             >
               {link.page}
             </Link>
