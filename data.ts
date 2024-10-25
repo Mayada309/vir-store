@@ -15,6 +15,8 @@ export const products: Product[] = [
     sizeOptions: ['S', 'M', 'L', 'XL'],
     color: 'White',
     stock: 50,
+    amount: 0,
+    selectedSize: '',
   },
   {
     id: 2,
@@ -27,6 +29,8 @@ export const products: Product[] = [
     sizeOptions: ['XS', 'S', 'M', 'L'],
     color: 'Black',
     stock: 30,
+    amount: 0,
+    selectedSize: '',
   },
   {
     id: 3,
@@ -39,5 +43,7 @@ export const products: Product[] = [
     sizeOptions: ['M', 'L', 'XL', 'XXL'],
     color: 'Gray',
     stock: 40,
+    amount: 0,
+    selectedSize: '',
   },
 ];
