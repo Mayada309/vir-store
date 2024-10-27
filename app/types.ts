@@ -12,6 +12,7 @@ export type Product = {
   stock: number;
   amount: number;
   selectedSize: string;
+  featured: boolean;
 };
 
 export type NavLink = {
