@@ -4,11 +4,16 @@ import { Button } from '../ui/button';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
+import { useState, useEffect } from 'react';
 
 function CartButton() {
-  const numItemsInCart = useSelector(
+  const [numItemsInCart, setNumItemsInCart] = useState(0);
+  const cartItemsCount = useSelector(
     (state: RootState) => state.cart.cartItems?.length || 0
   );
+  useEffect(() => {
+    setNumItemsInCart(cartItemsCount);
+  }, [cartItemsCount]);
 
   return (
     <Button

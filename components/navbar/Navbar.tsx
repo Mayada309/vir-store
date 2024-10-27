@@ -1,5 +1,4 @@
 import Container from '../global/Container';
-
 import CartButton from './CartButton';
 import LinksDropdown from './LinksDropdown';
 import Logo from './Logo';

@@ -5,14 +5,25 @@ import { CartItem } from '@/components/cart/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, RootState } from '../store';
 import CartTotals from '@/components/cart/CartTotals';
+import { useState, useEffect } from 'react';
 
 function Cart() {
-  const { cartItems } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  const cartItemsFromStore = useSelector(
+    (state: RootState) => state.cart.cartItems
+  );
 
-  const isEmpty = cartItems.length;
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  if (isEmpty === 0) {
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const cartItems = isHydrated ? cartItemsFromStore : [];
+
+  const isEmpty = cartItems.length === 0;
+
+  if (isEmpty) {
     return (
       <h2 className='max-w-7xl mt-8 mx-auto text-3xl text-slate-700 tracking-wide text-center'>
         Your cart is empty!
