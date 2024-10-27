@@ -6,7 +6,7 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <li
       key={product.id}
-      className='flex justify-center text-lg flex-col p-4 rounded-xl items-center gap-2'
+      className='flex max-w-96 justify-center text-lg flex-col p-4 rounded-xl items-center gap-2'
     >
       <Link
         href={{
@@ -19,10 +19,14 @@ function ProductCard({ product }: { product: Product }) {
           alt={product.name}
           width={300}
           height={300}
-          className='h-80 w-full object-cover bg-cover'
+          className='h-80 w-full object-cover  bg-cover rounded-xl '
         />
-        <p className='text-center'>{product.name}</p>
-        <p className='text-center'>{product.price}$</p>
+        <p className='text-start text-base pt-2 font-bold text-slate-700 '>
+          {product.name}
+        </p>
+        <p className='text-start pt-2 text-base text-slate-500'>
+          {product.price}$
+        </p>
       </Link>
     </li>
   );
