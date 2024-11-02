@@ -1,4 +1,4 @@
-import { Product } from './app/types';
+import { City, Product } from './app/types';
 import image1 from './images/product-1.jpg';
 import image2 from './images/product-2.jpg';
 import image3 from './images/product-3.jpg';
@@ -97,4 +97,30 @@ export const products: Product[] = [
     selectedSize: '',
     featured: true,
   },
+];
+
+export const cities: City[] = [
+  { id: 1, name: 'Cairo', shippingFee: 75 },
+  { id: 2, name: 'Dakahlia', shippingFee: 75 },
+  { id: 3, name: 'Port Said', shippingFee: 75 },
+  { id: 4, name: 'Beheira', shippingFee: 75 },
+  { id: 5, name: 'Qalyubia', shippingFee: 75 },
+  { id: 6, name: 'Kafr El Sheikh', shippingFee: 80 },
+  { id: 7, name: 'Ismailia', shippingFee: 75 },
+  { id: 8, name: 'Qena', shippingFee: 95 },
+  { id: 9, name: 'Aswan', shippingFee: 100 },
+  { id: 10, name: 'Luxor', shippingFee: 95 },
+  { id: 11, name: 'Matrouh', shippingFee: 115 },
+  { id: 12, name: 'Alexandria', shippingFee: 65 },
+  { id: 13, name: 'Giza', shippingFee: 75 },
+  { id: 14, name: 'Sharqia', shippingFee: 75 },
+  { id: 15, name: 'Gharbia', shippingFee: 80 },
+  { id: 16, name: 'Suez', shippingFee: 75 },
+  { id: 17, name: 'Monufia', shippingFee: 80 },
+  { id: 18, name: 'Damietta', shippingFee: 75 },
+  { id: 19, name: 'Sohag', shippingFee: 95 },
+  { id: 20, name: 'Assiut', shippingFee: 95 },
+  { id: 21, name: 'Beni Suef', shippingFee: 95 },
+  { id: 22, name: 'North Coast', shippingFee: 115 },
+  { id: 23, name: 'Red Sea', shippingFee: 180 },
 ];
