@@ -6,7 +6,9 @@ function FeaturedProducts() {
 
   return (
     <div className='mt-4 pt-4 text-2xl'>
-      <h2 className='capitalize text-slate-700 font-bold'>featured products</h2>
+      <h2 className='capitalize text-slate-700 font-bold p-2'>
+        featured products
+      </h2>
       <ProductsList products={featuredProducts} />
     </div>
   );
