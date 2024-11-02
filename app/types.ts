@@ -20,3 +20,9 @@ export type NavLink = {
   page: string;
   url: string;
 };
+
+export type City = {
+  id: number;
+  name: string;
+  shippingFee: number;
+}
