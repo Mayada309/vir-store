@@ -5,12 +5,14 @@ import { Product } from './types';
 interface CartState {
   cartItems: Product[];
   totalPrice: number;
+  shippingFee: number;
 }
 
 // Initial state
 const initialState: CartState = {
   cartItems: [],
   totalPrice: 0,
+  shippingFee: 0,
 };
 
 // Function to retrieve cart from localStorage with typing
@@ -24,6 +26,7 @@ const getCartFromLocalStorage = (): CartState => {
         return {
           cartItems: parsedCart.cartItems,
           totalPrice: parsedCart.totalPrice || 0,
+          shippingFee: parsedCart.shippingFee || 0,
         };
       }
     }
@@ -84,6 +87,9 @@ const cartSlice = createSlice({
         localStorage.setItem('cart', JSON.stringify(state));
       }
     },
+    getShippingFee: (state, { payload }: PayloadAction<number>) => {
+      state.shippingFee = payload;
+    },
   },
 });
 
@@ -94,6 +100,7 @@ export const {
   updateCart,
   clearCart,
   getTotalCheck,
+  getShippingFee,
 } = cartSlice.actions;
 
 // Configure store
