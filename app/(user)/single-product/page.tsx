@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { products } from '@/data';
 import Image from 'next/image';
-import { Product } from '../types';
+import { Product } from '../../types';
 import Container from '@/components/global/Container';
 import { Suspense } from 'react';
 import {
@@ -15,11 +15,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { addToCart } from '../store';
+import { addToCart } from '../../store';
 import {
   useDispatch,
   // useSelector
 } from 'react-redux';
+import { toast } from 'react-toastify';
 
 function SingleProduct() {
   const dispatch = useDispatch();
@@ -41,8 +42,9 @@ function SingleProduct() {
     };
     if (newProduct.amount !== 0 && newProduct.selectedSize !== 'undefined') {
       dispatch(addToCart(newProduct));
+      toast.success('Added to cart!');
     } else {
-      alert('please select an amount and a size');
+      toast.error('Please select an amount and a size!');
       return;
     }
   };

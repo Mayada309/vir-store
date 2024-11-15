@@ -1,11 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardFooter,
+  // CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -21,6 +20,7 @@ import { Product } from '@/app/types';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { removeFromCart, updateCart } from '@/app/store';
+import { MdCancel } from 'react-icons/md';
 
 export function CartItem({ product }: { product: Product }) {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export function CartItem({ product }: { product: Product }) {
   console.log('Product:', product);
 
   return (
-    <Card className='w-full flex items-center justify-between flex-wrap'>
+    <Card className=' flex items-center relative sm:justify-start '>
       <CardHeader>
         <Image
           className='w-28 h-28 rounded-xl object-cover'
@@ -37,14 +37,16 @@ export function CartItem({ product }: { product: Product }) {
           alt={product.name}
         />
       </CardHeader>
-      <CardContent className='flex flex-col gap-4'>
-        <CardTitle>{product.name}</CardTitle>
-        <div className='flex w-full items-center justify-between gap-4'>
+      <CardContent>
+        <CardTitle className='max-w-56 tracking-wide leading-5'>
+          {product.name}
+        </CardTitle>
+        <div className='flex w-full items-center pt-2 gap-4 '>
           <p className='capitalize'>
             size <span>{product.selectedSize}</span>
           </p>
 
-          <div className='flex items-center justify-center gap-4'>
+          <div className='flex items-center gap-2'>
             <Label htmlFor='amount'>Amount</Label>
             <Select
               onValueChange={(newAmount) =>
@@ -69,15 +71,14 @@ export function CartItem({ product }: { product: Product }) {
           </div>
         </div>
       </CardContent>
-      <CardFooter className='flex justify-between'>
-        <Button
-          onClick={() => dispatch(removeFromCart(product))}
-          variant='outline'
-          className='capitalize'
-        >
-          remove
-        </Button>
-      </CardFooter>
+      {/* <CardFooter className='flex justify-between'> */}
+      <button
+        onClick={() => dispatch(removeFromCart(product))}
+        className='capitalize text-2xl hover:text-orange-400 rounded-full absolute top-4 right-4'
+      >
+        <MdCancel />
+      </button>
+      {/* </CardFooter> */}
     </Card>
   );
 }

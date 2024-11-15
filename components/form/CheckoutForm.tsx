@@ -11,34 +11,43 @@ import {
 } from '@/components/ui/select';
 import { Label } from '../ui/label';
 import { cities } from '@/data';
-import FromInput from './FromInput';
+import FormInput from './FormInput';
 import { useDispatch } from 'react-redux';
 import { getShippingFee } from '@/app/store';
+// import { toast } from 'react-toastify';
 
 function CheckoutForm() {
   const dispatch = useDispatch();
   return (
-    <form className='flex flex-col gap-8 pt-4 sm:max-w-sm sm:mb-8 '>
+    <form className='flex flex-col gap-8 pt-4  sm:mb-8 '>
       <h2 className='text-lg capitalize mt-2 font-bold text-slate-700'>
         shipping information
       </h2>
       {/* name */}
-      <FromInput type='text' id='name' name='name' placeholder='Name' />
+      <FormInput
+        type='text'
+        id='name'
+        name='name'
+        placeholder='Name'
+        required={true}
+      />
 
       {/* email */}
-      <FromInput
+      <FormInput
         type='email'
         id='email'
         name='email'
         placeholder='example@ex.com'
+        required={true}
       />
 
       {/* number */}
-      <FromInput
+      <FormInput
         type='text'
         id='number'
         name='number'
         placeholder='0123456789'
+        required={true}
       />
 
       {/* city */}
@@ -54,11 +63,12 @@ function CheckoutForm() {
               )
             )
           }
+          required
         >
           <SelectTrigger
             id='city'
             name='city'
-            className='sm:max-w-sm rounded border-slate-300 text-slate-600'
+            className='rounded border-slate-300 text-slate-600'
           >
             <SelectValue placeholder='City' />
           </SelectTrigger>
@@ -81,14 +91,15 @@ function CheckoutForm() {
       </div>
 
       {/* address */}
-      <FromInput
+      <FormInput
         type='text'
         id='address'
         name='address'
         placeholder='Str no. building apartment..'
+        required={true}
       />
 
-      <FromInput
+      <FormInput
         type='text'
         id='paymentMethod'
         name='payment method'
@@ -96,7 +107,10 @@ function CheckoutForm() {
         disabled={true}
       />
 
-      <button className='bg-orange-400 capitalize text-white rounded py-2 px-4 '>
+      <button
+        type='submit'
+        className='bg-orange-400 capitalize text-white rounded py-2 px-4 '
+      >
         place order
       </button>
     </form>

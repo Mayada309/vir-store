@@ -1,8 +1,9 @@
-import './globals.css';
-import Navbar from '../components/navbar/Navbar';
+import '@/app/globals.css';
 import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ReduxProvider from '@/components/global/ReduxProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   keywords: 'Clothes, Hoodies, t-shirt, Women, Men,',
 };
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -21,8 +22,8 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <ReduxProvider>
-          <Navbar />
-          <main className='max-w-7xl mx-auto '>{children}</main>
+          {children}
+          <ToastContainer position='bottom-right' />
         </ReduxProvider>
       </body>
     </html>

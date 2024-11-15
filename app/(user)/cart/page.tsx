@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { CartItem } from '@/components/cart/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, RootState } from '../store';
+import { clearCart, RootState } from '../../store';
 import CartTotals from '@/components/cart/CartTotals';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';

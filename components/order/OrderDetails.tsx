@@ -18,7 +18,7 @@ function OrderDetails() {
   const cartTotal = isHydrated ? cartFromStore.totalPrice : 0;
 
   return (
-    <div className='bg-slate-100 p-4 rounded-xl flex flex-col gap-2 sm:max-w-sm'>
+    <div className='bg-slate-100 p-4 rounded-xl flex flex-col gap-2 sm:max-w-md'>
       <div>
         {cartItems.map((item) => {
           return (
@@ -32,7 +32,7 @@ function OrderDetails() {
       </div>
       <OrderItem
         heading='subtotal'
-        info={cartTotal === 0 ? '--' : String(cartTotal)}
+        info={cartTotal === 0 ? '--' : String(cartTotal.toFixed(2))}
       />
       <OrderItem
         heading='shipping fee'
