@@ -12,26 +12,40 @@ import { Input } from '@/components/ui/input';
 import Logo from '@/components/navbar/Logo';
 
 import axios from 'axios';
-import { redirect } from 'next/navigation';
-
-const adminLogin = async (formData: FormData) => {
-  const rawData = Object.fromEntries(formData.entries());
-  const response = await axios.post(
-    'http://kiiva.localhost:8000/api/login',
-    rawData,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    }
-  );
-  if (response.status === 200) {
-    redirect('/admin');
-  }
-};
+// import { redirect } from 'next/navigation';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+  const router = useRouter();
+  const adminLogin = async (formData: FormData) => {
+    const rawData = Object.fromEntries(formData.entries());
+    try {
+      const response = await axios.post(
+        'http://kiiva.localhost:8000/api/login',
+        rawData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        }
+      );
+      if (response.status === 200) {
+        router.push('/admin');
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.status === 401) {
+          toast.error('Wrong password!');
+        }
+        console.log(error.response?.data);
+      } else {
+        console.log('Unexpected error:', error);
+      }
+    }
+  };
+
   return (
     <div className='flex flex-col items-center justify-center pt-36'>
       <Logo />
@@ -43,7 +57,7 @@ const Login = () => {
         </CardHeader>
         <CardContent>
           <form action={adminLogin}>
-            <div className='grid w-full items-center gap-4'>
+            <div className='grid items-center gap-4'>
               <div className='flex flex-col space-y-1.5'>
                 <Input
                   id='email'
