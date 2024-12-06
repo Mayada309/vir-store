@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { BiLogOut } from 'react-icons/bi';
 import { deleteCookie, getCookie } from 'cookies-next';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const items = [
   {
@@ -57,9 +58,8 @@ const items = [
 ];
 
 function AdminSidebar() {
+  const router = useRouter();
   const logout = async () => {
-    console.log(getCookie('token'));
-
     try {
       await axios({
         method: 'POST',
@@ -71,6 +71,7 @@ function AdminSidebar() {
         },
       }).then(() => {
         deleteCookie('token');
+        router.push('/admin/login');
       });
     } catch (error) {
       console.log(error);
