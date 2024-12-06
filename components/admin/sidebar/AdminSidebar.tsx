@@ -1,3 +1,4 @@
+'use client';
 import { AiOutlineProduct } from 'react-icons/ai';
 import { BiSolidCategoryAlt } from 'react-icons/bi';
 import { FaHome, FaUserCheck } from 'react-icons/fa';
@@ -17,6 +18,10 @@ import {
   SidebarHeader,
 } from '@/components/ui/sidebar';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { BiLogOut } from 'react-icons/bi';
+import { deleteCookie, getCookie } from 'cookies-next';
+import axios from 'axios';
 
 const items = [
   {
@@ -52,6 +57,26 @@ const items = [
 ];
 
 function AdminSidebar() {
+  const logout = async () => {
+    console.log(getCookie('token'));
+
+    try {
+      await axios({
+        method: 'POST',
+        baseURL: 'http://kiiva.localhost:8000/api/logout',
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${getCookie('token')}`,
+          Accept: 'application/json',
+        },
+      }).then(() => {
+        deleteCookie('token');
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Sidebar className=''>
       <SidebarHeader className='max-w-[100px] '>
@@ -75,7 +100,12 @@ function AdminSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>Logout</SidebarFooter>
+      <SidebarFooter>
+        <Button variant={'ghost'} onClick={() => logout()}>
+          <BiLogOut />
+          Logout
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   );
 }
