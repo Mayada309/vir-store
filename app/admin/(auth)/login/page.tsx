@@ -19,6 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { setCookie } from 'cookies-next';
 import { useForm } from 'react-hook-form';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { customFetch } from '@/utils/axios';
 
 const loginSchema = z.object({
   email: z.string().email({
@@ -46,20 +47,12 @@ const Login = () => {
   const onSubmit = async (data: LoginSchemaType) => {
     setIsLoading(true);
     try {
-      const res = await axios.post(
-        'http://kiiva.localhost:8000/api/login',
-        data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        }
-      );
-      setCookie('token', res.data.token);
-      toast.success('You have successfully logged in!');
-      router.push('/admin');
-      setIsLoading(false);
+      const res = await customFetch.post('/login', data).then((res) => {
+        setCookie('token', res?.data.token);
+        toast.success('You have successfully logged in!');
+        router.push('/admin');
+        setIsLoading(false);
+      });
     } catch (error) {
       setIsLoading(false);
       if (isAxiosError(error)) {

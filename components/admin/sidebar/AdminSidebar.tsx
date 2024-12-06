@@ -20,9 +20,9 @@ import {
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { BiLogOut } from 'react-icons/bi';
-import { deleteCookie, getCookie } from 'cookies-next';
-import axios from 'axios';
+import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
+import { customFetch } from '@/utils/axios';
 
 const items = [
   {
@@ -61,15 +61,7 @@ function AdminSidebar() {
   const router = useRouter();
   const logout = async () => {
     try {
-      await axios({
-        method: 'POST',
-        baseURL: 'http://kiiva.localhost:8000/api/logout',
-        withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${getCookie('token')}`,
-          Accept: 'application/json',
-        },
-      }).then(() => {
+      await customFetch.post('/logout').then(() => {
         deleteCookie('token');
         router.push('/admin/login');
       });
