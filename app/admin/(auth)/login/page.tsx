@@ -1,13 +1,7 @@
 'use client';
 import * as React from 'react';
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
 import axios, { isAxiosError } from 'axios';
@@ -107,7 +101,7 @@ const Login = () => {
   return (
     <div className='flex flex-col items-center justify-center pt-36'>
       <div className='w-24 px-2'>
-        <Image src={logo} alt='kiiva' />
+        <Image src={logo} priority alt='kiiva' />
       </div>
       <Card className='sm:w-[450px] w-[300px]'>
         <CardHeader>
@@ -163,7 +157,6 @@ const Login = () => {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className='flex justify-center items-center'></CardFooter>
       </Card>
     </div>
   );
